@@ -40,5 +40,33 @@ status GetElem_L(Linklist L, int i,int *e){
 
 }
 status ListInsert_L(Linklist L,int i,ElemType e){
+    Linklist p,s;
+    int j;
+    p = L;
+    j = 0;
+    while(p && j < i - 1){
+        p = p->next;
+        ++j;
+    }
+    if (!p || j> i+1) return error;
+    s = (Linklist)malloc(sizeof(LNode));
+    s->data = e;
+    s->next = p->next;
+    p->next = s;
+    return ture;
+
+}
+status ListDelete(Linklist L,int i, ElemType e)
+{
     Linklist p;
+    int j = 0;
+    while(p->next && j<i-1){
+        p = p->next;
+        ++j;
+    }
+    if(!(p->next)|| j>i-1)return error;
+    e = p->data;
+    p->next = p->next->next;
+    free(p);
+    return ture;
 }
